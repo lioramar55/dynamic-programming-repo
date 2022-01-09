@@ -8,18 +8,16 @@ const findFibNum = (n) => {
 };
 
 //
-console.log(findFibNum(6));
 
 // this is a better practice solution with memoization
 // that will use a O(n) time complexity
+// this should handle most requests
 
-const betterFindFibNum = (n, memo = { 0: 0, 1: 1, 2: 1 }) => {
+const findFibNum2 = (n, memo = { 0: 0, 1: 1, 2: 1 }) => {
   // check if the number n is in the object memo
   if (n in memo) return memo[n];
   // if it is not in the object calculate it and store it inside under the key n
-  else memo[n] = betterFindFibNum(n - 1, memo) + betterFindFibNum(n - 2, memo);
+  else memo[n] = findFibNum2(n - 1, memo) + findFibNum2(n - 2, memo);
   // then return the calculated number
   return memo[n];
 };
-
-console.log(betterFindFibNum(50));
